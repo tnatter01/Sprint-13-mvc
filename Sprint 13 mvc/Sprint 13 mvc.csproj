@@ -49,6 +49,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -168,18 +170,59 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BoekenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Boeken.cs">
+      <DependentUpon>BoekenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BoekenModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoekenModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BoekenModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoekenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BoekenModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoekenModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Tijdschriften.cs">
+      <DependentUpon>TijdschriftenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TijdschriftenModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TijdschriftenModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TijdschriftenModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TijdschriftenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TijdschriftenModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TijdschriftenModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Boeken.mdf" />
+    <Content Include="App_Data\Boeken_log.ldf">
+      <DependentUpon>Boeken.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -188,8 +231,42 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\BoekenModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BoekenModel.edmx</DependentUpon>
+      <LastGenOutput>BoekenModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BoekenModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BoekenModel.edmx</DependentUpon>
+      <LastGenOutput>BoekenModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\TijdschriftenModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TijdschriftenModel.edmx</DependentUpon>
+      <LastGenOutput>TijdschriftenModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\TijdschriftenModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TijdschriftenModel.edmx</DependentUpon>
+      <LastGenOutput>TijdschriftenModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\BoekenModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BoekenModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BoekenModel.edmx.diagram">
+      <DependentUpon>BoekenModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\TijdschriftenModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TijdschriftenModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TijdschriftenModel.edmx.diagram">
+      <DependentUpon>TijdschriftenModel.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Sprint13 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Sprint13mvc20190603120909 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -237,9 +314,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Boeken\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -254,6 +332,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

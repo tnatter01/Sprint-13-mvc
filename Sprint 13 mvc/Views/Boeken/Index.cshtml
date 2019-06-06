@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Sprint_13_mvc.Models.Boeken>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Auteur)
+        </th>
+        <!--
+    <th>
+        @Html.DisplayNameFor(model => model.Taal)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Afmetingen)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.gewicht)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Druk)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Foto)
+    </th>
+        -->
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Auteur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Taal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Afmetingen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gewicht)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Druk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Foto)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ISBN }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ISBN }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ISBN })
+        </td>
+    </tr>
+}
+
+</table>
